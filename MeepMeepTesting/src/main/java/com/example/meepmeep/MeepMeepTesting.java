@@ -10,13 +10,16 @@ import com.noahbres.meepmeep.core.colorscheme.scheme.ColorSchemeBlueDark;
 
 public class MeepMeepTesting {
     public static void main(String args[]) {
-        MeepMeep nm = new MeepMeep(1200);
+        MeepMeep nm = new MeepMeep(800);
+
+        // declaring start pos
+        Pose2d startPose = new Pose2d(0,-60,Math.toRadians(90));
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(nm)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(83, 30, Math.toRadians(60), Math.toRadians(60), 16.88)
                 .followTrajectorySequence(drive ->
-                        drive.trajectorySequenceBuilder(new Pose2d(0, 0, 90))
+                        drive.trajectorySequenceBuilder(startPose)
                                 .splineToConstantHeading(new Vector2d(40,40), Math.toRadians(90))
                                 .splineToConstantHeading(new Vector2d(0,0), Math.toRadians(90))
                                 .build()
