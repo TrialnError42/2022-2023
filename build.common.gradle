@@ -56,12 +56,12 @@ android {
     defaultConfig {
         signingConfig signingConfigs.debug
         applicationId 'com.qualcomm.ftcrobotcontroller'
-        minSdkVersion 23
+        minSdkVersion 24
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 28
-        multiDexEnabled !useProguard
+        multiDexEnabled true
 
-        /**
+        /*
          * We keep the versionCode and versionName of robot controller applications in sync with
          * the master information published in the AndroidManifest.xml file of the FtcRobotController
          * module. This helps avoid confusion that might arise from having multiple versions of
@@ -97,7 +97,7 @@ android {
             signingConfig signingConfigs.release
 
             ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
+                abiFilters "armeabi-v7a"//, "arm64-v8a"
             }
 
             if (useProguard) {
@@ -111,7 +111,7 @@ android {
             debuggable true
             jniDebuggable true
             ndk {
-                abiFilters "armeabi-v7a", "arm64-v8a"
+                abiFilters "armeabi-v7a"//, "arm64-v8a"
             }
 
             if (useProguard) {
@@ -141,6 +141,7 @@ android {
 repositories {
     flatDir {
         dirs rootProject.file('libs')
+        mavenCentral()
     }
 }
 
