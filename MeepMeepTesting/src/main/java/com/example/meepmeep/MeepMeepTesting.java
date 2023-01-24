@@ -13,19 +13,39 @@ public class MeepMeepTesting {
         MeepMeep nm = new MeepMeep(800);
 
         // declaring start pos
-        Pose2d startPose = new Pose2d(0,-60,Math.toRadians(90));
+        Pose2d startPose = new Pose2d(-30,-60,Math.toRadians(90));
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(nm)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(83, 30, Math.toRadians(60), Math.toRadians(60), 16.88)
+                .setConstraints(300, 120, Math.toRadians(310), Math.toRadians(180), 16.88)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(startPose)
-                                .splineToConstantHeading(new Vector2d(40,40), Math.toRadians(90))
-                                .splineToConstantHeading(new Vector2d(0,0), Math.toRadians(90))
+                                .strafeTo(new Vector2d(-45, -60))
+                                .splineToConstantHeading(new Vector2d(-46,-18), Math.toRadians(-30))
+                                .turn(Math.toRadians(76))
+                                .forward(8)
+                                .back(16)
+                                .forward(16)
+                                .back(16)
+//                                .turn(Math.toRadians(45))
+//                                .turn(Math.toRadians(-45))
+//                                .splineToConstantHeading(new Vector2d(-40,0), Math.toRadians(-30))
+//                                .turn(Math.toRadians(-90))
+//                                .turn(Math.toRadians(90))
+//                                .splineToConstantHeading(new Vector2d(-55,3), Math.toRadians(-30))
+//                                .turn(Math.toRadians(45))
+//                                .turn(Math.toRadians(-45))
+//                                .splineToConstantHeading(new Vector2d(-40,0), Math.toRadians(-30))
+//                                .turn(Math.toRadians(-90))
+                                .turn(Math.toRadians(90))
+
+//                                .splineToLinearHeading(new Vector2d(-52,3), Math.toRadians(30))
+//                                .splineToLinearHeading(new Pose2d(-52, 2), Math.toRadians(0))
+
                                 .build()
                 );
 
-        nm.setBackground(MeepMeep.Background.FIELD_FREIGHTFRENZY_ADI_DARK)
+        nm.setBackground(MeepMeep.Background.FIELD_POWERPLAY_KAI_DARK)
                 .setDarkMode(true)
                 .setBackgroundAlpha(0.95f)
                 .addEntity(myBot)
