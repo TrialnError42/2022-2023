@@ -63,27 +63,13 @@ public class Controller extends LinearOpMode {
 
 
     private void driveControl() {
-//        double scale = 0.8;
-//        if (gamepad1.left_bumper) {
-//            scale = 1;
-//        } else if (gamepad1.left_trigger > 0.5) {
-//            scale = 0.3;
-//        }
-//
-//        double drive1 = gamepad1.left_stick_y;
-//        double strafe = -gamepad1.left_stick_x;
-//        double turn = -gamepad1.right_stick_x;
-//        robot.startMove(drive1, strafe, turn, scale);
-
         if (gamepad1.y) {
             // Lift up
-            // robot.motorLiftL.setPower(0.2);
-            // robot.motorLiftR.setPower(0.8);
+
             TC.lift_move_to(2000);
         } else if (gamepad1.a) {
             // Lift down
-            // robot.motorLiftL.setPower(-0.2);
-            // robot.motorLiftR.setPower(-0.8);
+
             TC.lift_move_to(0);
         } else if (gamepad1.x) {
             // Turret left
@@ -93,7 +79,6 @@ public class Controller extends LinearOpMode {
         }
         else if (gamepad1.b) {
             // Turret right
-            // robot.motorTurret.setPower(0.01);
         } else {
             robot.motorLiftL.setPower(0);
             robot.motorLiftR.setPower(0);
@@ -106,20 +91,8 @@ public class Controller extends LinearOpMode {
         telemetry.addData("motorTurret position", robot.motorTurret.getCurrentPosition());
 
     }
-//
-//    private void poseTelemetry() {
-//
-//        drive.update();
-//
-//        // Retrieve your pose
-//        Pose2d myPose = drive.getPoseEstimate();
-//
-//        telemetry.addData("x", myPose.getX());
-//        telemetry.addData("y", myPose.getY());
-//        telemetry.addData("heading", myPose.getHeading());
-//    }
 
-    }
+}
 
 
 

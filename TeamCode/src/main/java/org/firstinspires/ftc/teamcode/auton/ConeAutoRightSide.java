@@ -21,25 +21,14 @@
 
         package org.firstinspires.ftc.teamcode.auton;
 
-        import com.acmerobotics.dashboard.FtcDashboard;
-        import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-        import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-        import org.firstinspires.ftc.teamcode.oldCode.AutoCommon;
-        import org.openftc.apriltag.AprilTagDetection;
-        import org.openftc.easyopencv.OpenCvCamera;
-        import org.openftc.easyopencv.OpenCvCameraFactory;
-        import org.openftc.easyopencv.OpenCvCameraRotation;
-        import org.openftc.easyopencv.OpenCvInternalCamera;
-        import com.acmerobotics.dashboard.config.Config;
-
-        import java.util.ArrayList;
+import org.firstinspires.ftc.teamcode.oldCode.AutoCommon;
+import org.openftc.apriltag.AprilTagDetection;
+import org.openftc.easyopencv.OpenCvCamera;
 
 @Autonomous
-public class AprilTagAutonomousInitDetectionExample extends AutoCommon
+public class ConeAutoRightSide extends AutoCommon
 {
     OpenCvCamera camera;
     AprilTagDetectionPipeline aprilTagDetectionPipeline;
@@ -218,17 +207,88 @@ public class AprilTagAutonomousInitDetectionExample extends AutoCommon
 
         if (tagOfInterest == null) {
             //trajetory (code that makes it move)
-            driveOnHeading(20,0.5,0);
+            driveOnHeading(2,0.2,0);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_CLOSE_POS);
+            sleep(1000);
+            hover();
+            sleep(1000);
+            driveOnHeading(50,0.3,0);
+            sleep(500);
+            driveOnHeading(-10,0.3,0);
+            sleep(500);
+            intake();
+            sleep(1000);
         } else if (tagOfInterest.id == LEFT) {
-            driveOnHeading(40,0.2,0);
+            driveOnHeading(1.5,0.2,0);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_CLOSE_POS);
+            sleep(1000);
+            hover();
+            sleep(1000);
+            driveOnHeading(73,0.3,0);
+            sleep(500);
+            highJunction();
+            sleep(250);
+            turretLeft135();
+            sleep(2500);
+            highJunctionDrop();
+            sleep(250);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_OPEN_POS);
+            sleep(250);
+            highJunction();
+            driveOnHeading(-5,0.3,0);
+            intake();
+            sleep(1000);
             turnToHeading(-90,0.3);
-            driveOnHeading(20,0.3,-90);
+            sleep(500);
+            driveOnHeading(30,0.3,90);
+            sleep(1000);
         } else if (tagOfInterest.id == MIDDLE) {
-            driveOnHeading(40,0.2,0);
+            driveOnHeading(1.5,0.2,0);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_CLOSE_POS);
+            sleep(1000);
+            hover();
+            sleep(1000);
+            driveOnHeading(73,0.3,0);
+            sleep(500);
+            highJunction();
+            sleep(250);
+            turretLeft135();
+            sleep(2500);
+            highJunctionDrop();
+            sleep(250);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_OPEN_POS);
+            sleep(250);
+            highJunction();
+            driveOnHeading(-5,0.3,0);
+            intake();
+            sleep(1000);
+            turnToHeading(-90,0.3);
+            sleep(500);
+            sleep(10000000);
         } else if (tagOfInterest.id == RIGHT) {
-            driveOnHeading(40,0.2,0);
-            turnToHeading(90,0.3);
-            driveOnHeading(20,0.3,90);
+            driveOnHeading(1.5,0.2,0);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_CLOSE_POS);
+            sleep(1000);
+            hover();
+            sleep(1000);
+            driveOnHeading(73,0.3,0);
+            sleep(500);
+            highJunction();
+            sleep(250);
+            turretLeft135();
+            sleep(2500);
+            highJunctionDrop();
+            sleep(250);
+            robot.lift.servoClaw.setPosition(robot.lift.CLAW_OPEN_POS);
+            sleep(250);
+            highJunction();
+            driveOnHeading(-5,0.3,0);
+            intake();
+            sleep(1000);
+            turnToHeading(-90,0.3);
+            sleep(500);
+            driveOnHeading(30,0.3,90);
+            sleep(1000);
             //trajetory (code that makes it move)
         }
 

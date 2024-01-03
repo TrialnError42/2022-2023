@@ -94,11 +94,6 @@ public class MeepMeepTesting {
                                         .lineTo(new Vector2d(-30, 12))
                                         .turn(Math.toRadians(180))
                                         .lineTo(new Vector2d(-53, 12))
-
-
-
-//                                .splineToLinearHeading(new Vector2d(-52,3), Math.toRadians(30))
-//                                .splineToLinearHeading(new Pose2d(-52, 2), Math.toRadians(0))
                                         .build()
 
                 );
