@@ -55,40 +55,69 @@ public class Controller extends LinearOpMode {
         telemetry.update();
 
         while (opModeIsActive()) {
+            liftControl();
             driveControl();
 //            poseTelemetry();
             telemetry.update();
         }
     }
-
-
     private void driveControl() {
-        if (gamepad1.y) {
-            // Lift up
-
-            TC.lift_move_to(2000);
-        } else if (gamepad1.a) {
-            // Lift down
-
-            TC.lift_move_to(0);
-        } else if (gamepad1.x) {
-            // Turret left
-            // robot.motorTurret.setPower(-0.01);
-
-            TC.overide = true;
+        double scale = 0.6;
+        if (gamepad1.left_bumper) {
+            scale = 1.0;
+        } else if (gamepad1.left_trigger > 0.5) {
+            scale = 0.3;
         }
-        else if (gamepad1.b) {
-            // Turret right
-        } else {
+
+        double drive = -gamepad1.left_stick_y;
+        double strafe = gamepad1.left_stick_x;
+        double turn = gamepad1.right_stick_x;
+        robot.startMove(drive, strafe, turn, scale);
+    }
+
+    private void liftControl() {
+//        if (gamepad1.y) {
+//            // Lift up
+//
+//            TC.lift_move_to(1000);
+//        } else if (gamepad1.a) {
+//            // Lift down
+//
+//            TC.lift_move_to(0);
+//        } else if (gamepad1.x) {
+//            // Turret left
+//            // robot.motorTurret.setPower(-0.01);
+//
+//            TC.overide = true;
+//        }
+//        else if (gamepad1.b) {
+//            // Turret right
+//        } else {
+//            robot.motorLiftL.setPower(0);
+//            robot.motorLiftR.setPower(0);
+//            robot.motorTurret.setPower(0);
+//        }
+//
+//        telemetry.addData("motorLiftL position", robot.motorLiftL.getCurrentPosition());
+//        telemetry.addData("motorLiftR position", robot.motorLiftR.getCurrentPosition());
+//
+//        telemetry.addData("motorTurret position", robot.motorTurret.getCurrentPosition());
+        if(gamepad1.y){
+            if(robot.motorLiftL.getCurrentPosition() != 0 && robot.motorLiftR.getCurrentPosition() != 0){
+                robot.motorLiftL.setPower(-0.1);
+                robot.motorLiftR.setPower(0.1);
+            }
+        }
+        if(gamepad1.x){
             robot.motorLiftL.setPower(0);
             robot.motorLiftR.setPower(0);
-            robot.motorTurret.setPower(0);
         }
-
-        telemetry.addData("motorLiftL position", robot.motorLiftL.getCurrentPosition());
-        telemetry.addData("motorLiftR position", robot.motorLiftR.getCurrentPosition());
-
-        telemetry.addData("motorTurret position", robot.motorTurret.getCurrentPosition());
+        if(gamepad1.a){
+            if(robot.motorLiftL.getCurrentPosition() != 0 && robot.motorLiftR.getCurrentPosition() != 0){
+                robot.motorLiftL.setPower(0.1);
+                robot.motorLiftR.setPower(-0.1);
+            }
+        }
 
     }
 

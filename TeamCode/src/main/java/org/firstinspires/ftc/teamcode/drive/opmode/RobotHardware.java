@@ -34,10 +34,10 @@ public class RobotHardware {
             initializeIMU();
         }
 
-        motorFL = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
-        motorBL = hardwareMap.get(DcMotor.class, "motorBL");
-        motorBR = hardwareMap.get(DcMotor.class, "motorBR");
+        motorFL = hardwareMap.get(DcMotor.class, "leftFront");
+        motorFR = hardwareMap.get(DcMotor.class, "leftRight");
+        motorBL = hardwareMap.get(DcMotor.class, "leftRear");
+        motorBR = hardwareMap.get(DcMotor.class, "rightRear");
         motorFL.setDirection(DcMotorSimple.Direction.FORWARD);
         motorFR.setDirection(DcMotorSimple.Direction.REVERSE);
         motorBL.setDirection(DcMotorSimple.Direction.FORWARD);
