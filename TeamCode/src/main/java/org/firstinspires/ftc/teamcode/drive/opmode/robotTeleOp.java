@@ -38,10 +38,10 @@ public class robotTeleOp extends LinearOpMode {
         telemetry.update();
 
         leftSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftSlides.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         rightSlides.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightSlides.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightSlides.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         leftSlides.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -88,24 +88,21 @@ public class robotTeleOp extends LinearOpMode {
 
     }
     private void intakeControl(){
-        if(gamepad1.right_trigger >= 0.3){
-            intake.setPower(0.8);
-        }
-        if(gamepad1.left_bumper){
-            intake.setPower(-0.8);
-        }
+        /*
+        The buttons a for intake on, and a for intake off
+        */
     }
     private void liftControl() {
        //code allows for the lift of the thing
         // presets
-
+        /*
+            Preset Height
+            The buttons: X for medium height, and Y for high height
+         */
         //granular control
-        if(gamepad1.left_trigger >= 0.3){
-            leftSlides.setPower(0.1);
-            rightSlides.setPower(0.1);
-        } else{
-            leftSlides.setPower(0);
-            rightSlides.setPower(0);
-        }
+        /*
+            D-Pad buttons: up for increasing height, down for decreasing height
+        */
+
     }
 }
